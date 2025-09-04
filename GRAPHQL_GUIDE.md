@@ -1,8 +1,12 @@
-# Complete Guide: Apollo Server + Supabase SDK Integration
+# GraphQL Implementation Guide
+
+> **AI Context**: This is the single source of truth for GraphQL implementation patterns and best practices.
+> For MCP resources: see `MCP_RESOURCES.md`
+> For project setup: see `SETUP.md`
 
 ## Overview
 
-This guide provides a comprehensive approach to implementing GraphQL with Apollo Server and Supabase SDK, replacing complex hybrid GraphQL-to-GraphQL architectures with a simpler, more maintainable solution.
+This guide provides comprehensive patterns for implementing GraphQL with Apollo Server and Supabase SDK, focusing on maintainable, performant, and type-safe solutions.
 
 ## Core Architecture Principles
 
@@ -10,16 +14,19 @@ This guide provides a comprehensive approach to implementing GraphQL with Apollo
 - One Apollo Server instance handling all GraphQL operations
 - Supabase SDK for direct database operations
 - Custom resolvers for business logic
+- No GraphQL-to-GraphQL overhead
 
 ### 2. Type Safety First
 - Use Supabase generated TypeScript types
 - Strongly typed GraphQL schema
 - Consistent error handling patterns
+- Runtime type validation
 
 ### 3. Performance Optimization
 - Direct database queries (no GraphQL-to-GraphQL overhead)
 - Efficient query patterns with joins
 - Proper pagination and filtering
+- Connection pooling and caching
 
 ## Project Setup
 
@@ -40,15 +47,15 @@ This guide provides a comprehensive approach to implementing GraphQL with Apollo
 }
 ```
 
-### Supabase Types Generation
+### Type Generation
 ```bash
-# Generate TypeScript types from your Supabase schema
+# Generate TypeScript types from Supabase schema
 npx supabase gen types typescript --project-id YOUR_PROJECT_ID > lib/database.types.ts
 ```
 
 ## Schema Definition
 
-### GraphQL Schema (`schema/typeDefs.ts`)
+### Core Types
 ```typescript
 import { gql } from 'apollo-server-express'
 
@@ -138,8 +145,12 @@ export const typeDefs = gql`
     CONFIRMED
     CANCELLED
   }
+`
+```
 
-  # Input Types
+### Input Types
+```typescript
+export const inputTypes = gql`
   input PropertyFilters {
     city: String
     property_type: String
@@ -166,44 +177,12 @@ export const typeDefs = gql`
     deposit_amount: Float
     status: ReservationStatus
   }
-
-  type Query {
-    # Properties
-    properties(filters: PropertyFilters, pagination: PaginationInput): [Property!]!
-    property(id: UUID!): Property
-    
-    # Agencies
-    agencies: [Agency!]!
-    agency(id: UUID!): Agency
-    
-    # Users
-    users: [User!]!
-    user(id: UUID!): User
-    me: User
-    
-    # Reservations
-    reservations: [TourReservation!]!
-    reservation(id: UUID!): TourReservation
-    myReservations: [TourReservation!]!
-  }
-
-  type Mutation {
-    # Reservations
-    createReservation(input: CreateReservationInput!): TourReservation!
-    updateReservation(input: UpdateReservationInput!): TourReservation!
-    cancelReservation(id: UUID!): TourReservation!
-    
-    # Properties (Admin only)
-    createProperty(input: CreatePropertyInput!): Property!
-    updateProperty(input: UpdatePropertyInput!): Property!
-    deleteProperty(id: UUID!): Boolean!
-  }
 `
 ```
 
 ## Context Setup
 
-### Apollo Context (`lib/context.ts`)
+### Apollo Context
 ```typescript
 import { SupabaseClient } from '@supabase/supabase-js'
 import { createClient } from '@supabase/supabase-js'
@@ -254,34 +233,20 @@ export async function createContext({ req }: { req: any }): Promise<Context> {
 }
 ```
 
-## Resolvers Implementation
+## Resolver Implementation
 
-### Query Resolvers (`resolvers/queries.ts`)
+### Query Resolvers
 ```typescript
 import { GraphQLError } from 'graphql'
 import { Context } from '../lib/context'
-import { Database } from '../lib/database.types'
-
-type Property = Database['public']['Tables']['properties']['Row']
-type Agency = Database['public']['Tables']['agencies']['Row']
-type User = Database['public']['Tables']['users']['Row']
-type TourReservation = Database['public']['Tables']['tour_reservations']['Row']
 
 export const queryResolvers = {
   Query: {
-    // Properties
     properties: async (
       _: any,
       { filters = {}, pagination = {} }: {
-        filters?: {
-          city?: string
-          property_type?: string
-          min_price?: number
-          max_price?: number
-          bedrooms?: number
-          status?: string
-        }
-        pagination?: { limit?: number; offset?: number }
+        filters?: PropertyFilters
+        pagination?: PaginationInput
       },
       { supabase }: Context
     ) => {
@@ -337,198 +302,18 @@ export const queryResolvers = {
       }
 
       return data
-    },
-
-    // Agencies
-    agencies: async (_: any, __: any, { supabase }: Context) => {
-      const { data, error } = await supabase
-        .from('agencies')
-        .select(`
-          *,
-          properties(id, title, price, city, status)
-        `)
-
-      if (error) {
-        throw new GraphQLError(`Failed to fetch agencies: ${error.message}`)
-      }
-
-      return data || []
-    },
-
-    agency: async (
-      _: any,
-      { id }: { id: string },
-      { supabase }: Context
-    ) => {
-      const { data, error } = await supabase
-        .from('agencies')
-        .select(`
-          *,
-          properties(*)
-        `)
-        .eq('id', id)
-        .single()
-
-      if (error && error.code !== 'PGRST116') {
-        throw new GraphQLError(`Failed to fetch agency: ${error.message}`)
-      }
-
-      return data
-    },
-
-    // Users
-    users: async (_: any, __: any, { supabase, user }: Context) => {
-      // Only admins can list all users
-      if (!user || user.role !== 'admin') {
-        throw new GraphQLError('Unauthorized')
-      }
-
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-
-      if (error) {
-        throw new GraphQLError(`Failed to fetch users: ${error.message}`)
-      }
-
-      return data || []
-    },
-
-    user: async (
-      _: any,
-      { id }: { id: string },
-      { supabase, user }: Context
-    ) => {
-      // Users can only access their own data or admins can access any
-      if (!user || (user.id !== id && user.role !== 'admin')) {
-        throw new GraphQLError('Unauthorized')
-      }
-
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', id)
-        .single()
-
-      if (error && error.code !== 'PGRST116') {
-        throw new GraphQLError(`Failed to fetch user: ${error.message}`)
-      }
-
-      return data
-    },
-
-    me: async (_: any, __: any, { supabase, user }: Context) => {
-      if (!user) {
-        throw new GraphQLError('Not authenticated')
-      }
-
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', user.id)
-        .single()
-
-      if (error) {
-        throw new GraphQLError(`Failed to fetch user profile: ${error.message}`)
-      }
-
-      return data
-    },
-
-    // Reservations
-    reservations: async (_: any, __: any, { supabase, user }: Context) => {
-      // Only admins and agents can see all reservations
-      if (!user || !['admin', 'agent'].includes(user.role)) {
-        throw new GraphQLError('Unauthorized')
-      }
-
-      const { data, error } = await supabase
-        .from('tour_reservations')
-        .select(`
-          *,
-          user:users(id, name, email),
-          property:properties(id, title, city, price)
-        `)
-
-      if (error) {
-        throw new GraphQLError(`Failed to fetch reservations: ${error.message}`)
-      }
-
-      return data || []
-    },
-
-    reservation: async (
-      _: any,
-      { id }: { id: string },
-      { supabase, user }: Context
-    ) => {
-      if (!user) {
-        throw new GraphQLError('Not authenticated')
-      }
-
-      let query = supabase
-        .from('tour_reservations')
-        .select(`
-          *,
-          user:users(id, name, email),
-          property:properties(id, title, city, price)
-        `)
-        .eq('id', id)
-
-      // Non-admins can only see their own reservations
-      if (user.role !== 'admin') {
-        query = query.eq('user_id', user.id)
-      }
-
-      const { data, error } = await query.single()
-
-      if (error && error.code !== 'PGRST116') {
-        throw new GraphQLError(`Failed to fetch reservation: ${error.message}`)
-      }
-
-      return data
-    },
-
-    myReservations: async (_: any, __: any, { supabase, user }: Context) => {
-      if (!user) {
-        throw new GraphQLError('Not authenticated')
-      }
-
-      const { data, error } = await supabase
-        .from('tour_reservations')
-        .select(`
-          *,
-          property:properties(id, title, city, price, images)
-        `)
-        .eq('user_id', user.id)
-        .order('scheduled_date', { ascending: true })
-
-      if (error) {
-        throw new GraphQLError(`Failed to fetch your reservations: ${error.message}`)
-      }
-
-      return data || []
     }
   }
 }
 ```
 
-### Mutation Resolvers (`resolvers/mutations.ts`)
+### Mutation Resolvers
 ```typescript
-import { GraphQLError } from 'graphql'
-import { Context } from '../lib/context'
-
 export const mutationResolvers = {
   Mutation: {
     createReservation: async (
       _: any,
-      { input }: {
-        input: {
-          property_id: string
-          scheduled_date: string
-          deposit_amount: number
-        }
-      },
+      { input }: { input: CreateReservationInput },
       { supabase, user }: Context
     ) => {
       if (!user) {
@@ -593,130 +378,14 @@ export const mutationResolvers = {
       }
 
       return data
-    },
-
-    updateReservation: async (
-      _: any,
-      { input }: {
-        input: {
-          id: string
-          scheduled_date?: string
-          deposit_amount?: number
-          status?: string
-        }
-      },
-      { supabase, user }: Context
-    ) => {
-      if (!user) {
-        throw new GraphQLError('Authentication required')
-      }
-
-      // Check ownership or admin rights
-      const { data: existingReservation, error: fetchError } = await supabase
-        .from('tour_reservations')
-        .select('user_id, status')
-        .eq('id', input.id)
-        .single()
-
-      if (fetchError) {
-        throw new GraphQLError('Reservation not found')
-      }
-
-      if (user.role !== 'admin' && existingReservation.user_id !== user.id) {
-        throw new GraphQLError('Unauthorized to update this reservation')
-      }
-
-      // Prepare update data
-      const updateData: any = {}
-      if (input.scheduled_date) {
-        const scheduledDate = new Date(input.scheduled_date)
-        if (scheduledDate <= new Date()) {
-          throw new GraphQLError('Scheduled date must be in the future')
-        }
-        updateData.scheduled_date = input.scheduled_date
-      }
-      if (input.deposit_amount) updateData.deposit_amount = input.deposit_amount
-      if (input.status) updateData.status = input.status
-
-      const { data, error } = await supabase
-        .from('tour_reservations')
-        .update(updateData)
-        .eq('id', input.id)
-        .select(`
-          *,
-          user:users(id, name, email),
-          property:properties(id, title, city, price)
-        `)
-        .single()
-
-      if (error) {
-        throw new GraphQLError(`Failed to update reservation: ${error.message}`)
-      }
-
-      return data
-    },
-
-    cancelReservation: async (
-      _: any,
-      { id }: { id: string },
-      { supabase, user }: Context
-    ) => {
-      if (!user) {
-        throw new GraphQLError('Authentication required')
-      }
-
-      // Check ownership or admin rights
-      const { data: existingReservation, error: fetchError } = await supabase
-        .from('tour_reservations')
-        .select('user_id, status, scheduled_date')
-        .eq('id', id)
-        .single()
-
-      if (fetchError) {
-        throw new GraphQLError('Reservation not found')
-      }
-
-      if (user.role !== 'admin' && existingReservation.user_id !== user.id) {
-        throw new GraphQLError('Unauthorized to cancel this reservation')
-      }
-
-      if (existingReservation.status === 'cancelled') {
-        throw new GraphQLError('Reservation is already cancelled')
-      }
-
-      // Check if cancellation is allowed (e.g., not too close to scheduled date)
-      const scheduledDate = new Date(existingReservation.scheduled_date)
-      const now = new Date()
-      const hoursUntilReservation = (scheduledDate.getTime() - now.getTime()) / (1000 * 60 * 60)
-      
-      if (hoursUntilReservation < 24 && user.role !== 'admin') {
-        throw new GraphQLError('Cannot cancel reservation less than 24 hours before scheduled time')
-      }
-
-      const { data, error } = await supabase
-        .from('tour_reservations')
-        .update({ status: 'cancelled' })
-        .eq('id', id)
-        .select(`
-          *,
-          user:users(id, name, email),
-          property:properties(id, title, city, price)
-        `)
-        .single()
-
-      if (error) {
-        throw new GraphQLError(`Failed to cancel reservation: ${error.message}`)
-      }
-
-      return data
     }
   }
 }
 ```
 
-## Server Setup
+## Server Configuration
 
-### Apollo Server Configuration (`server.ts`)
+### Apollo Server Setup
 ```typescript
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
@@ -761,7 +430,7 @@ startServer()
 
 ## Best Practices
 
-### 1. Error Handling
+### Error Handling
 ```typescript
 // Always handle Supabase errors consistently
 const { data, error } = await supabase.from('table').select('*')
@@ -774,7 +443,7 @@ if (error) {
 return data || []
 ```
 
-### 2. Authentication Guards
+### Authentication Guards
 ```typescript
 // Create reusable auth guards
 export const requireAuth = (user?: Context['user']) => {
@@ -791,7 +460,7 @@ export const requireRole = (user: Context['user'], allowedRoles: string[]) => {
 }
 ```
 
-### 3. Query Optimization
+### Query Optimization
 ```typescript
 // Use specific selects to avoid over-fetching
 const { data } = await supabase
@@ -807,7 +476,7 @@ const { data } = await supabase
 // CREATE INDEX idx_properties_status ON properties(status);
 ```
 
-### 4. Input Validation
+### Input Validation
 ```typescript
 // Validate inputs before database operations
 const validateReservationInput = (input: CreateReservationInput) => {
@@ -828,7 +497,7 @@ const validateReservationInput = (input: CreateReservationInput) => {
 
 ## Testing Strategy
 
-### Unit Tests Example
+### Unit Tests
 ```typescript
 // resolvers/queries.test.ts
 import { queryResolvers } from './queries'
@@ -848,6 +517,20 @@ describe('Property Resolvers', () => {
   })
 })
 ```
+
+## Performance Monitoring
+
+### Key Metrics
+- Query response times
+- Database connection usage
+- Memory consumption
+- Error rates
+
+### Optimization Tips
+- Use connection pooling
+- Implement query result caching
+- Add database indexes for frequent filters
+- Use pagination for large result sets
 
 ## Migration from Hybrid Resolver
 
@@ -877,41 +560,14 @@ Replace GraphQL client initialization with Supabase client in context.
 - Verify all queries return expected data
 - Check performance improvements
 
-## Performance Monitoring
+## Related Resources
 
-### Key Metrics to Track
-- Query response times
-- Database connection usage
-- Memory consumption
-- Error rates
+- [MCP Resources](MCP_RESOURCES.md)
+- [Documentation Architecture](DOCUMENTATION_ARCHITECTURE.md)
+- [Project Setup Guide](SETUP.md)
+- [Apollo Server Documentation](https://www.apollographql.com/docs/apollo-server/)
+- [Supabase Documentation](https://supabase.com/docs)
 
-### Optimization Tips
-- Use connection pooling
-- Implement query result caching
-- Add database indexes for frequent filters
-- Use pagination for large result sets
+---
 
-This architecture provides a robust, maintainable, and performant foundation for your GraphQL API while leveraging Supabase's powerful features directly.
-
-
-I've created a comprehensive training document for your AI agent on implementing the optimal Apollo Server + Supabase SDK architecture. This guide covers:
-Key Benefits of this approach:
-
-Simplified Architecture: Single GraphQL endpoint, no dual schema management
-Better Performance: Direct database queries instead of GraphQL-to-GraphQL overhead
-Enhanced Type Safety: Leverage Supabase's generated TypeScript types
-Easier Maintenance: Standard Apollo patterns, cleaner error handling
-Cost Effective: Fewer network calls, better resource utilization
-
-The guide includes:
-
-Complete project setup with proper dependencies
-Type-safe GraphQL schema definitions
-Comprehensive resolver implementations with business logic
-Authentication and authorization patterns
-Error handling best practices
-Performance optimization strategies
-Testing approaches
-Step-by-step migration plan from your current hybrid approach
-
-This replaces the complexity of managing two GraphQL systems with a single, well-structured Apollo Server that uses Supabase SDK directly for all database operations. The result is more maintainable code, better performance, and easier debugging.
+**This guide provides a complete, production-ready approach to GraphQL implementation with Apollo Server and Supabase SDK.**

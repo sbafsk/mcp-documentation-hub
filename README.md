@@ -61,6 +61,21 @@ Project-wide documentation governance and best practices:
   - MCP integration patterns
   - Redundancy elimination strategies
 
+### **4. 🔧 Technical Guides**
+Comprehensive guides for specific technologies and patterns:
+
+- **MCP Resources** (`MCP_RESOURCES.md`)
+  - Complete MCP server setup and configuration
+  - Integration guides for Cursor, VS Code, and Claude
+  - Troubleshooting and best practices
+  - Community resources and tools
+
+- **GraphQL Guide** (`GRAPHQL_GUIDE.md`)
+  - Apollo Server + Supabase SDK implementation
+  - Type-safe schema definitions and resolvers
+  - Performance optimization strategies
+  - Migration from hybrid architectures
+
 ---
 
 ## 🚀 **Quick Start**
@@ -244,12 +259,16 @@ yarn add -D @modelcontextprotocol/server-filesystem
 
 ### **Documentation**
 - **Architecture Guide**: `DOCUMENTATION_ARCHITECTURE.md` - Complete implementation guide
+- **MCP Resources**: `MCP_RESOURCES.md` - MCP server setup and integration
+- **GraphQL Guide**: `GRAPHQL_GUIDE.md` - Apollo Server + Supabase implementation
 - **Boilerplate READMEs**: Detailed setup and customization instructions
 - **Project Examples**: Working implementations to study and learn from
 
 ### **External Resources**
 - **MCP Documentation**: https://modelcontextprotocol.io
 - **Next.js Documentation**: https://nextjs.org/docs
+- **Apollo Server**: https://www.apollographql.com/docs/apollo-server/
+- **Supabase**: https://supabase.com/docs
 - **Modern Web Development**: Latest best practices and tools
 
 ---
