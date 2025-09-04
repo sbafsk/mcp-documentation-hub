@@ -1,0 +1,31 @@
+last_updated: "[Current Date]"
+phase: "[Current Development Phase]"
+completion_percentage: [Number]
+
+completed_features:
+  - id: "project_setup"
+    status: "complete"
+    completion_date: "[Date]"
+  - id: "basic_structure"
+    status: "complete"
+    completion_date: "[Date]"
+
+current_priorities:
+  - id: "[Feature 1]"
+    deadline: "[Deadline]"
+    assignee: "[Team Member]"
+    dependencies: ["[Dependency 1]", "[Dependency 2]"]
+  - id: "[Feature 2]"
+    deadline: "[Deadline]"
+    assignee: "[Team Member]"
+    dependencies: ["[Dependency 1]"]
+
+metrics:
+  test_coverage: [Number]
+  performance_score: [Number]
+  security_scan: "[Status]"
+
+next_milestone:
+  target_date: "[Date]"
+  description: "[Milestone description]"
+  success_criteria: ["[Criterion 1]", "[Criterion 2]"]

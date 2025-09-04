@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "radios-docs": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "./docs"
+      ],
+      "env": {
+        "PROJECT_NAME": "Radios Blog",
+        "CONTEXT_TYPE": "project_documentation"
+      }
+    },
+    "radios-standards": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "./standards"
+      ],
+      "env": {
+        "PROJECT_NAME": "Radios Blog",
+        "context_type": "development_standards"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+project:
+  name: "[Project Name]"
+  type: "Web Application"
+  target_market: "[Your Target Market]"
+  description: "[Brief project description]"
+  
+current_status:
+  phase: "[Current Development Phase]"
+  completion: "[Overall completion percentage]"
+  next_priority: "[Next major milestone]"
+  
+tech_stack:
+  frontend: "Next.js 15 + TypeScript + TailwindCSS"
+  backend: "[Your Backend Choice]"
+  api: "[Your API Choice]"
+  database: "[Your Database Choice]"
+  auth: "[Your Auth Choice]"
+  
+architecture:
+  pattern: "Full-stack web application"
+  deployment: "[Your Deployment Choice]"
+  monitoring: "[Your Monitoring Choice]"
+  
+references:
+  detailed_status: "docs/status/progress.yaml"
+  architecture: "docs/architecture/overview.md"
+  standards: "standards/coding.md"
+  setup_guide: "docs/guides/setup.md"
+
+

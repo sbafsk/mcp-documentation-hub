@@ -1,0 +1,28 @@
+project:
+  name: "Radios Blog"
+  type: "Vintage Radio Collection & Blog Platform"
+  target_market: "Radio enthusiasts, collectors, history buffs"
+  description: "A platform showcasing vintage radio collections for sale, featuring blog posts about radio station history, and a gallery of vintage postcards."
+  
+current_status:
+  phase: "Project Initialization & Planning"
+  completion: "0% - Project just started"
+  next_priority: "UI Design & Project Structure Setup"
+  
+tech_stack:
+  frontend: "Next.js 15 + TypeScript + TailwindCSS"
+  backend: "Supabase (PostgreSQL + Auth + Storage)"
+  api: "REST API with potential GraphQL migration"
+  database: "PostgreSQL via Supabase"
+  auth: "Supabase Auth with JWT"
+  
+architecture:
+  pattern: "Full-stack web application with content management"
+  deployment: "Vercel (MVP) → AWS (production)"
+  monitoring: "Vercel Analytics + Sentry"
+  
+references:
+  detailed_status: "docs/status/progress.yaml"
+  architecture: "docs/architecture/overview.md"
+  standards: "standards/coding.md"
+  setup_guide: "docs/guides/setup.md"

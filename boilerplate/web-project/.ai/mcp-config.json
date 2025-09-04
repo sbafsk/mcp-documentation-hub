@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "project-docs": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "./docs"],
+      "env": {
+        "PROJECT_NAME": "[Project Name]",
+        "CONTEXT_TYPE": "project_documentation"
+      }
+    },
+    "project-standards": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "./standards"],
+      "env": {
+        "PROJECT_NAME": "[Project Name]",
+        "context_type": "development_standards"
+      }
+    }
+  }
+}
+
