@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "maicemita-docs": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "./docs"]
+    },
+    "maicemita-standards": {
+      "command": "npx", 
+      "args": ["@modelcontextprotocol/server-filesystem", "./standards"]
+    }
+  }
+}
