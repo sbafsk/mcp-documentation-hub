@@ -1,30 +1,125 @@
 project:
   name: "[Project Name]"
-  type: "Web Application"
-  target_market: "[Your Target Market]"
+  type: "[Project Type]"
   description: "[Brief project description]"
+  target_market: "[Target audience or market]"
+  business_domain: "[Business domain or industry]"
   
 current_status:
   phase: "[Current Development Phase]"
-  completion: "[Overall completion percentage]"
-  next_priority: "[Next major milestone]"
+  completion: "[Overall completion status]"
+  next_priority: "[Next major priority or milestone]"
+  last_updated: "[Last update date]"
   
 tech_stack:
-  frontend: "Next.js 15 + TypeScript + TailwindCSS"
-  backend: "[Your Backend Choice]"
-  api: "[Your API Choice]"
-  database: "[Your Database Choice]"
-  auth: "[Your Auth Choice]"
+  frontend: "[Frontend Technology Stack]"
+  backend: "[Backend Technology Stack]"
+  api: "[API Technology Stack]"
+  database: "[Database Technology Stack]"
+  auth: "[Authentication Technology Stack]"
+  deployment: "[Deployment Technology Stack]"
+  testing: "[Testing Technology Stack]"
+  monitoring: "[Monitoring Technology Stack]"
   
 architecture:
-  pattern: "Full-stack web application"
-  deployment: "[Your Deployment Choice]"
-  monitoring: "[Your Monitoring Choice]"
+  pattern: "[Architectural Pattern]"
+  deployment: "[Deployment Strategy]"
+  monitoring: "[Monitoring Strategy]"
+  scaling: "[Scaling Strategy]"
+  security: "[Security Strategy]"
+  
+development:
+  team_size: "[Team Size]"
+  development_methodology: "[Development Methodology]"
+  code_review_process: "[Code Review Process]"
+  testing_strategy: "[Testing Strategy]"
+  ci_cd_pipeline: "[CI/CD Pipeline Description]"
+  
+business_context:
+  stakeholders: "[Key Stakeholders]"
+  success_metrics: "[Success Metrics]"
+  constraints: "[Business Constraints]"
+  timeline: "[Project Timeline]"
+  budget: "[Budget Considerations]"
+  
+features:
+  core_features:
+    - "[Core Feature 1]"
+    - "[Core Feature 2]"
+    - "[Core Feature 3]"
+  planned_features:
+    - "[Planned Feature 1]"
+    - "[Planned Feature 2]"
+    - "[Planned Feature 3]"
+  future_features:
+    - "[Future Feature 1]"
+    - "[Future Feature 2]"
+    - "[Future Feature 3]"
+  
+integrations:
+  external_services:
+    - "[External Service 1]"
+    - "[External Service 2]"
+    - "[External Service 3]"
+  apis:
+    - "[API Integration 1]"
+    - "[API Integration 2]"
+    - "[API Integration 3]"
+  third_party:
+    - "[Third Party Service 1]"
+    - "[Third Party Service 2]"
+    - "[Third Party Service 3]"
+  
+performance:
+  target_metrics:
+    load_time: "[Target Load Time]"
+    response_time: "[Target Response Time]"
+    uptime: "[Target Uptime]"
+    concurrent_users: "[Target Concurrent Users]"
+  optimization_strategies:
+    - "[Optimization Strategy 1]"
+    - "[Optimization Strategy 2]"
+    - "[Optimization Strategy 3]"
+  
+security:
+  authentication: "[Authentication Method]"
+  authorization: "[Authorization Strategy]"
+  data_protection: "[Data Protection Strategy]"
+  compliance: "[Compliance Requirements]"
+  security_measures:
+    - "[Security Measure 1]"
+    - "[Security Measure 2]"
+    - "[Security Measure 3]"
+  
+deployment:
+  environments:
+    development: "[Development Environment]"
+    staging: "[Staging Environment]"
+    production: "[Production Environment]"
+  deployment_strategy: "[Deployment Strategy]"
+  rollback_strategy: "[Rollback Strategy]"
+  monitoring: "[Deployment Monitoring]"
   
 references:
   detailed_status: "docs/status/progress.yaml"
   architecture: "docs/architecture/overview.md"
   standards: "standards/coding.md"
   setup_guide: "docs/guides/setup.md"
-
-
+  api_docs: "docs/architecture/api.md"
+  database_docs: "docs/architecture/database.md"
+  deployment_guide: "docs/guides/deployment.md"
+  
+ai_context:
+  mcp_integration: true
+  context_loading_priority:
+    - "docs/status/progress.yaml"
+    - "docs/index.md"
+    - "standards/coding.md"
+    - "docs/architecture/overview.md"
+  ai_instructions: "Follow coding standards, maintain consistency, prioritize performance and security"
+  development_assistance:
+    - "Code generation with proper TypeScript types"
+    - "Component creation following established patterns"
+    - "API integration with error handling"
+    - "Testing implementation with comprehensive coverage"
+    - "Documentation updates maintaining single source of truth"
