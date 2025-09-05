@@ -6,6 +6,8 @@
 
 ## Code Style & Conventions
 
+> Note: Examples reference common React/TypeScript tooling but are adaptable. Replace libraries and patterns to match your chosen stack (e.g., Vue/Nuxt, SvelteKit, Angular) while keeping the same quality bar and structure.
+
 ### General Principles
 
 - **Readability**: Code should be self-documenting

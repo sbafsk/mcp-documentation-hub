@@ -17,23 +17,23 @@ This root README provides quick setup instructions. For comprehensive documentat
 
 **→ Go to `docs/index.md` for the complete picture**
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack (Template)
 
-- **Frontend**: Next.js 15 (App Router) + TypeScript + React 19
-- **Styling**: TailwindCSS + shadcn/ui + Radix UI
-- **Backend**: [Your Backend Choice] (Supabase, AWS, etc.)
-- **API**: GraphQL or REST API
-- **State Management**: Redux Toolkit + React Query
-- **Forms**: React Hook Form + Zod validation
-- **Testing**: Jest + React Testing Library + Playwright
-- **Package Manager**: Yarn
-- **Deployment**: [Your Deployment Choice]
+- **Frontend**: [Your Frontend Framework] (e.g., Next.js, Remix, Nuxt) + TypeScript
+- **Styling**: [Your Styling Choice] (e.g., TailwindCSS, CSS Modules, Chakra UI)
+- **Backend**: [Your Backend Choice] (e.g., Supabase, Firebase, AWS, Node/Express)
+- **API**: [Your API Approach] (GraphQL, REST, tRPC)
+- **State Management**: [Your Choice] (e.g., React Query, Redux Toolkit, Zustand)
+- **Forms**: [Your Choice] (e.g., React Hook Form, Formik) + [Validation] (e.g., Zod, Yup)
+- **Testing**: [Unit] + [E2E] (e.g., Jest, Vitest, Playwright)
+- **Package Manager**: [Yarn | npm | pnpm]
+- **Deployment**: [Your Deployment Choice] (e.g., Vercel, Netlify, AWS)
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- Yarn package manager
+- Node.js 18+ (or your runtime version)
+- [Yarn | npm | pnpm]
 - [Your Backend Requirements]
 
 ### 1. Clone and Install
@@ -45,7 +45,7 @@ yarn install
 
 ### 2. Environment Setup
 ```bash
-cp env.example .env
+cp env.example .env.local
 ```
 
 Fill in your environment variables:
@@ -53,25 +53,26 @@ Fill in your environment variables:
 # [Your Configuration Variables]
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_APP_NAME=[Project Name]
+# Add project-specific variables here
 ```
 
 ### 3. Development
 ```bash
 # Start development server
-yarn dev
+[yarn|npm|pnpm] dev
 
 # Run tests
-yarn test
+[yarn|npm|pnpm] test
 
 # Run E2E tests
-yarn test:e2e
+[yarn|npm|pnpm] test:e2e
 
 # Type checking
-yarn type-check
+[yarn|npm|pnpm] type-check
 
 # Linting and formatting
-yarn lint
-yarn format
+[yarn|npm|pnpm] lint
+[yarn|npm|pnpm] format
 ```
 
 ## 📁 Project Structure
@@ -135,7 +136,7 @@ yarn type-check       # TypeScript type checking
 **🎯 Complete documentation is organized in the `/docs` folder**
 
 ### **Quick Navigation**
-- **`docs/index.md`** - **COMPLETE PROJECT OVERVIEW** (Start here!)
+- **`docs/index.md`** - **PROJECT OVERVIEW TEMPLATE** (Start here!)
 - **`docs/status/progress.yaml`** - Current project status and progress
 - **`docs/architecture/overview.md`** - System architecture overview
 - **`docs/guides/setup.md`** - Environment setup guide
@@ -191,4 +192,5 @@ We use Model Context Protocol (MCP) to enhance AI development assistance with 2-
 2. **Go to `docs/index.md`** for complete documentation
 3. **Check `docs/status/progress.yaml`** for current status
 4. **Follow `docs/guides/setup.md`** for development workflow
+
 

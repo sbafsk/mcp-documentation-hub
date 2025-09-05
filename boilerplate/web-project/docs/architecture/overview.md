@@ -13,22 +13,22 @@
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Frontend      │    │     API Layer   │    │    Backend      │
-│   (Next.js)     │◄──►│   ([Your API])  │◄──►│   ([Your DB])   │
+│   ([Your Frontend]) │◄──►│   ([Your API])  │◄──►│   ([Your DB])   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          ▼                       ▼                       ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   UI Components │    │   Data Layer    │    │   Database      │
-│   (React)       │    │   ([Your State])│    │   ([Your DB])   │
+│   ([Your UI Library]) │    │   ([Your State])│    │   ([Your DB])   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
 ## Technology Stack
 
 ### Frontend
-- **Framework**: Next.js 15 with App Router
+- **Framework**: [Your Frontend Framework]
 - **Language**: TypeScript
-- **Styling**: TailwindCSS + shadcn/ui + Radix UI
+- **Styling**: [Your Styling Choices]
 - **State Management**: [Your State Management Choice]
 - **Design System**: [Your Design System]
 
