@@ -25,8 +25,9 @@ lib/
 
 ## State Management
 
-- Prefer [Riverpod | BLoC] for testability
-- Avoid global mutable state; use providers/cubits/blocs
+- Prefer Riverpod (AsyncNotifier/Notifier) for app state
+- Avoid global mutable state; use providers
+- Consider hooks_riverpod + flutter_hooks for widget-side logic
 
 ## Networking
 
@@ -37,6 +38,7 @@ lib/
 
 - Use `freezed` + `json_serializable`
 - Immutability and copyWith support
+- Use @JsonSerializable(fieldRename: FieldRename.snake) where applicable
 
 ## Testing
 

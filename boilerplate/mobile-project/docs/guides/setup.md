@@ -21,12 +21,18 @@ Follow official guide: https://docs.flutter.dev/get-started/install
 flutter doctor
 ```
 
-### 3. Install Dependencies
+### 3. Add Core Packages (per standards)
+```bash
+flutter pub add hooks_riverpod flutter_hooks freezed_annotation json_annotation
+flutter pub add --dev build_runner freezed json_serializable
+```
+
+### 4. Install Dependencies
 ```bash
 flutter pub get
 ```
 
-### 4. Run App
+### 5. Run App
 ```bash
 flutter run
 ```

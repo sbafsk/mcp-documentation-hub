@@ -27,9 +27,11 @@
 
 ### Mobile
 - **Framework**: Flutter (Dart)
-- **State Management**: [Riverpod | BLoC | Provider | MobX]
-- **Navigation**: [GoRouter | Navigator 2.0]
+- **State Management**: Riverpod (preferred per standards)
+- **Navigation**: GoRouter (preferred)
 - **Styling**: Material 3 / Cupertino
+- **Codegen**: Freezed + JsonSerializable
+- **Hooks**: flutter_hooks + hooks_riverpod for composable stateful logic
 
 ### Backend & API
 - **Platform**: [Your Backend Platform]
