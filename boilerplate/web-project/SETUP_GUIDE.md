@@ -281,3 +281,4 @@ mkdir -p .cursor
 **Remember**: This boilerplate follows AI-friendly architecture principles. Start with the basics and enhance gradually as your project grows.
 
 
+

@@ -59,16 +59,27 @@ cat projects/avent-properties/docs/status/progress.yaml
 
 ```
 MCP/
-├── README.md                    # Main project overview
-├── DOCUMENTATION_ARCHITECTURE.md # Complete implementation guide
+├── .cursor/                     # MCP configs for the repo
+│   └── mcp.json
+├── .git/
+├── .gitignore
+├── DOCUMENTATION_ARCHITECTURE.md
+├── GRAPHQL_GUIDE.md
+├── MCP_RESOURCES.md
+├── README.md
 ├── SETUP.md                     # This file
 ├── boilerplate/                 # Ready-to-use templates
-│   └── web-project/            # Web application boilerplate
-├── boilerplate/                 # Ready-to-use templates
-│   ├── web-project/            # Web application boilerplate
-│   └── mobile-project/         # Flutter/Dart mobile boilerplate
-├── repos/                       # MCP integration guides
-└── .gitignore                  # Git ignore file
+│   ├── README.md
+│   └── web-project/             # Web application boilerplate
+│       ├── .ai/
+│       ├── docs/
+│       ├── standards/
+│       └── SETUP_GUIDE.md
+└── projects/                    # Real project examples
+    ├── avent-properties/
+    ├── maicemita-site/
+    ├── personal-site/
+    └── radios-blog/
 ```
 
 ---
@@ -80,12 +91,6 @@ MCP/
 - **MCP integration** ready to use
 - **Setup guides** for customization
 - **Development standards** and patterns
-
-### **Boilerplates** (`/boilerplate/`)
-- **Web Project**: Next.js/TypeScript docs boilerplate
-- **Mobile Project**: Flutter/Dart docs boilerplate with CI
-- **MCP integration** ready to use
-- **Setup guides** and standards
 
 ### **Documentation Standards** (Root files)
 - **Architecture guide** with implementation details
@@ -157,26 +162,18 @@ cat SETUP_GUIDE.md
 ### **Boilerplate Templates**
 - `boilerplate/web-project/.ai/context.yaml` - Template context
 - `boilerplate/web-project/docs/index.md` - Web docs structure
-- `boilerplate/mobile-project/.ai/context.yaml` - Mobile template context
-- `boilerplate/mobile-project/docs/index.md` - Mobile docs structure
+- `boilerplate/web-project/.ai/mcp-config.json` - MCP template config
 
 ### **Ready-to-Use Templates**
 - `boilerplate/web-project/SETUP_GUIDE.md` - Detailed customization guide
-- `boilerplate/web-project/.ai/context.yaml` - Template context file
 - `boilerplate/web-project/docs/index.md` - Template documentation structure
 
 ---
 
 ## 🤝 **Getting Help**
 
-### **Use the Boilerplates**
-Start from the web or mobile boilerplates in `/boilerplate/` and customize for your project.
-
-### **Follow the Architecture Guide**
-`DOCUMENTATION_ARCHITECTURE.md` contains complete implementation instructions with real examples.
-
-### **Use the Boilerplates**
-The boilerplates in `/boilerplate/` are designed to be immediately useful with minimal setup.
+- **Use the Boilerplates**: Start from the web or mobile boilerplates in `/boilerplate/` and customize for your project.
+- **Follow the Architecture Guide**: `DOCUMENTATION_ARCHITECTURE.md` contains complete implementation instructions with real examples.
 
 ---
 

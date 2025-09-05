@@ -1,25 +1,25 @@
 {
     "mcpServers": {
-        "avent-rules": {
+        "boilerplates": {
             "command": "npx",
             "args": [
                 "@modelcontextprotocol/server-filesystem",
-                "./rules"
+                "./boilerplate"
             ],
             "env": {
-                "PROJECT_NAME": "Avent Properties",
-                "CONTEXT_TYPE": "development_standards_and_patterns"
+                "PROJECT_NAME": "MCP Documentation Hub",
+                "CONTEXT_TYPE": "boilerplates_and_templates"
             }
         },
-        "avent-docs": {
+        "projects": {
             "command": "npx",
             "args": [
                 "@modelcontextprotocol/server-filesystem",
-                "./docs"
+                "./projects"
             ],
             "env": {
-                "PROJECT_NAME": "Avent Properties",
-                "CONTEXT_TYPE": "project_status_and_implementation"
+                "PROJECT_NAME": "MCP Documentation Hub",
+                "CONTEXT_TYPE": "project_examples"
             }
         }
     }

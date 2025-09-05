@@ -13,10 +13,8 @@
       "args": ["@modelcontextprotocol/server-filesystem", "./standards"],
       "env": {
         "PROJECT_NAME": "[Project Name]",
-        "context_type": "development_standards"
+        "CONTEXT_TYPE": "development_standards"
       }
     }
   }
 }
-
-
