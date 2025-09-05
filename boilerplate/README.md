@@ -22,6 +22,15 @@
 
 ---
 
+## 🧭 **How to Use This README**
+
+- **Purpose**: This file is a high-level index of available boilerplates.
+- **Where details live**: Day-to-day usage and implementation details live in each boilerplate's `README.md` and `SETUP_GUIDE.md`.
+- **Docs vs Standards**: Put project documentation in `docs/` for each boilerplate; keep immutable development rules in `standards/`.
+- **Single source of truth**: Update information in its one canonical location and link to it rather than duplicating.
+
+---
+
 ## 🎯 **Why Use These Boilerplates?**
 
 ### **1. AI-Friendly Architecture**
@@ -248,6 +257,7 @@ yarn add -D @modelcontextprotocol/server-filesystem
 ---
 
 **Remember**: These boilerplates follow AI-friendly architecture principles designed to be practical, maintainable, and immediately useful. They eliminate the overhead of setting up documentation while providing a solid foundation for project success.
+
 
 
 
