@@ -21,8 +21,7 @@ git clone <repository-url>
 cd MCP
 
 # Explore the examples
-ls projects/          # Real project implementations
-ls boilerplate/       # Ready-to-use templates
+ls boilerplate/       # Ready-to-use templates (web + mobile)
 cat DOCUMENTATION_ARCHITECTURE.md  # Complete guide
 ```
 
@@ -65,10 +64,9 @@ MCP/
 ├── SETUP.md                     # This file
 ├── boilerplate/                 # Ready-to-use templates
 │   └── web-project/            # Web application boilerplate
-├── projects/                    # Real project examples
-│   ├── avent-properties/        # Luxury real estate platform
-│   ├── personal-site/           # Portfolio project
-│   └── radios-blog/            # Content management system
+├── boilerplate/                 # Ready-to-use templates
+│   ├── web-project/            # Web application boilerplate
+│   └── mobile-project/         # Flutter/Dart mobile boilerplate
 ├── repos/                       # MCP integration guides
 └── .gitignore                  # Git ignore file
 ```
@@ -83,11 +81,11 @@ MCP/
 - **Setup guides** for customization
 - **Development standards** and patterns
 
-### **Real Projects** (`/projects/`)
-- **Working implementations** of the architecture
-- **Actual business logic** and requirements
-- **MCP integration examples** with real use cases
-- **Documentation patterns** in practice
+### **Boilerplates** (`/boilerplate/`)
+- **Web Project**: Next.js/TypeScript docs boilerplate
+- **Mobile Project**: Flutter/Dart docs boilerplate with CI
+- **MCP integration** ready to use
+- **Setup guides** and standards
 
 ### **Documentation Standards** (Root files)
 - **Architecture guide** with implementation details
@@ -156,10 +154,11 @@ cat SETUP_GUIDE.md
 - `DOCUMENTATION_ARCHITECTURE.md` - Complete implementation guide
 - `README.md` - Project overview and features
 
-### **Working Examples**
-- `projects/avent-properties/.ai/context.yaml` - Master context implementation
-- `projects/avent-properties/docs/status/progress.yaml` - Machine-readable status
-- `projects/avent-properties/docs/index.md` - Single entry point
+### **Boilerplate Templates**
+- `boilerplate/web-project/.ai/context.yaml` - Template context
+- `boilerplate/web-project/docs/index.md` - Web docs structure
+- `boilerplate/mobile-project/.ai/context.yaml` - Mobile template context
+- `boilerplate/mobile-project/docs/index.md` - Mobile docs structure
 
 ### **Ready-to-Use Templates**
 - `boilerplate/web-project/SETUP_GUIDE.md` - Detailed customization guide
@@ -170,8 +169,8 @@ cat SETUP_GUIDE.md
 
 ## 🤝 **Getting Help**
 
-### **Study the Examples**
-The best way to learn is by studying the working implementations in the `projects/` directory.
+### **Use the Boilerplates**
+Start from the web or mobile boilerplates in `/boilerplate/` and customize for your project.
 
 ### **Follow the Architecture Guide**
 `DOCUMENTATION_ARCHITECTURE.md` contains complete implementation instructions with real examples.

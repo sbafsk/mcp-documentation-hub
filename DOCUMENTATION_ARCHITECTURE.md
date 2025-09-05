@@ -347,13 +347,9 @@ This architecture has been **successfully implemented and validated** across mul
 
 ## 📚 **Working Implementation Examples**
 
-### **Complete Working Implementations**
-- **Avent Properties** (`projects/avent-properties/`) - Luxury real estate platform
-- **Personal Site** (`projects/personal-site/`) - Portfolio project
-- **Radios Blog** (`projects/radios-blog/`) - Content management system
-
 ### **Ready-to-Use Boilerplates**
-- **Web Project Boilerplate** (`boilerplate/web-project/`) - Complete template
+- **Web Project Boilerplate** (`boilerplate/web-project/`) - Web documentation template
+- **Mobile Project Boilerplate** (`boilerplate/mobile-project/`) - Flutter/Dart documentation template with CI
 
 ### **Key Files to Reference (All Working)**
 - `.ai/context.yaml` - Master context implementation ✅

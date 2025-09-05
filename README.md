@@ -35,23 +35,16 @@ Ready-to-use project templates with complete documentation architecture:
   - MCP integration with context injection patterns
   - Machine-readable status tracking
 
-### **2. 🏗️ Real Project Examples** (`/projects/`)
-Working implementations demonstrating the architecture in practice:
+### **2. 🧱 Mobile Project Boilerplate** (`/boilerplate/mobile-project/`)
+Ready-to-use template for Flutter/Dart mobile applications:
 
-- **Avent Properties** (`/projects/avent-properties/`)
-  - Luxury real estate platform for Dubai HNWIs
-  - Complete MCP integration with 2-server setup
-  - Machine-readable progress tracking
-  - GraphQL + Supabase + Next.js architecture
+- **Mobile Project Boilerplate** (`/boilerplate/mobile-project/`)
+  - Flutter (Dart) + AI-friendly documentation structure
+  - MCP integration with context injection patterns
+  - Machine-readable status tracking
+  - GitHub Actions CI template
 
-- **Personal Site** (`/projects/personal-site/`)
-  - Portfolio and personal branding project
-  - AI-optimized documentation structure
-
-- **Radios Blog** (`/projects/radios-blog/`)
-  - Content management system example
-  - Documentation architecture implementation
-
+> Note: Real project examples are omitted from the public repository. Use the boilerplates as your starting point.
 ### **3. 📖 Documentation Standards** (`/standards/`)
 Project-wide documentation governance and best practices:
 
@@ -96,9 +89,8 @@ cd your-new-project
 git clone <this-repo-url>
 cd MCP
 
-# Explore the examples
-ls projects/          # Real project implementations
-ls boilerplate/       # Ready-to-use templates
+# Explore the templates
+ls boilerplate/       # Ready-to-use templates (web + mobile)
 cat DOCUMENTATION_ARCHITECTURE.md  # Complete guide
 ```
 
@@ -273,35 +265,17 @@ yarn add -D @modelcontextprotocol/server-filesystem
 
 ---
 
-## 🔍 **Project Examples Deep Dive**
-
-### **Avent Properties** (`/projects/avent-properties/`)
-**Luxury Real Estate Platform for Dubai HNWIs**
-
-**What Makes It Special**:
-- **Complete MCP Integration**: 2-server setup with context injection
-- **Machine-Readable Status**: YAML-based progress tracking
-- **AI-Optimized Structure**: Single source of truth architecture
-- **Real Business Logic**: Actual requirements and domain model
-
-**Tech Stack**: Next.js 15, TypeScript, GraphQL, Supabase, TailwindCSS
-
-**Key Files**:
-- `.ai/context.yaml` - Master context implementation
-- `docs/status/progress.yaml` - Machine-readable status
-- `docs/index.md` - Single entry point
-- `standards/coding.md` - Standards organization
+## 🔍 **Boilerplates Deep Dive**
 
 ### **Web Project Boilerplate** (`/boilerplate/web-project/`)
-**Ready-to-Use Template for Modern Web Applications**
+- AI-friendly documentation architecture (web)
+- MCP configuration and status templates
+- Standards and setup guides
 
-**What You Get**:
-- **Complete Documentation Structure**: AI-friendly architecture out of the box
-- **MCP Configuration**: Ready-to-use AI development assistance
-- **Development Standards**: Established patterns for quality code
-- **Setup Guides**: Step-by-step customization instructions
-
-**Perfect For**: New Next.js, React, or modern web projects
+### **Mobile Project Boilerplate** (`/boilerplate/mobile-project/`)
+- Flutter/Dart mobile docs structure
+- MCP configuration and status templates
+- GitHub Actions CI and setup guides
 
 ---
 
