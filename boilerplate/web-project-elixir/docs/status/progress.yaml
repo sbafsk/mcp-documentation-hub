@@ -1,0 +1,13 @@
+last_updated: "2025-09-05"
+phase: "docs_scaffold"
+completion_percentage: 20
+
+stack:
+  language: Elixir
+  framework: Phoenix 1.7+
+  liveview: true
+  database: PostgreSQL
+
+references:
+  elixir_docs: "https://elixir-lang.org/docs.html"
+  phoenix_overview: "https://hexdocs.pm/phoenix/overview.html"

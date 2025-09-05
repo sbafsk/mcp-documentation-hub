@@ -1,0 +1,27 @@
+project:
+  name: "Elixir Phoenix Web Boilerplate"
+  type: "Web App"
+  description: "Boilerplate docs architecture for Phoenix + LiveView + Tailwind"
+
+tech_stack:
+  language: "Elixir"
+  framework: "Phoenix (LiveView)"
+  database: "PostgreSQL"
+  build_tool: "Mix"
+  testing: "ExUnit"
+  logging: "Logger"
+
+current_status:
+  phase: "docs_scaffold"
+  completion: "Docs 20%"
+  next_priority: "Fill in installation and project structure"
+
+references:
+  status: "../docs/status/progress.yaml"
+  overview: "../docs/index.md"
+  architecture: "../docs/architecture/overview.md"
+  standards: "../standards/coding.md"
+
+external_references:
+  elixir_docs: "https://elixir-lang.org/docs.html"
+  phoenix_overview: "https://hexdocs.pm/phoenix/overview.html"
