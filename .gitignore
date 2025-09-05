@@ -116,3 +116,6 @@ projects/
 # Allow tracking for Pomodoro Flutter project
 !projects/pomodoro-flutter/
 !projects/pomodoro-flutter/**
+# Allow tracking for Linear Phoenix project
+!projects/linear/
+!projects/linear/**
