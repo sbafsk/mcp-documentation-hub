@@ -1,0 +1,62 @@
+last_updated: "[Current Date]"
+phase: "[Current Development Phase]"
+completion_percentage: [Number]
+
+completed_features:
+  - id: "project_setup"
+    status: "complete"
+    completion_date: "[Date]"
+    description: "Flutter project initialized, dependencies configured, CI ready"
+  - id: "navigation_setup"
+    status: "complete"
+    completion_date: "[Date]"
+    description: "Routing/navigation (e.g., GoRouter) configured"
+  - id: "state_management"
+    status: "complete"
+    completion_date: "[Date]"
+    description: "Chosen state management (e.g., Riverpod/BLoC) baseline in place"
+  - id: "api_integration"
+    status: "complete"
+    completion_date: "[Date]"
+    description: "HTTP/Dio client with interceptors and error handling"
+  - id: "local_storage"
+    status: "complete"
+    completion_date: "[Date]"
+    description: "Hive/SharedPreferences/SQLite integration and adapters"
+
+current_priorities:
+  - id: "[Feature 1]"
+    deadline: "[Deadline]"
+    assignee: "[Team Member]"
+    dependencies: ["[Dependency 1]"]
+    status: "in_progress"
+  - id: "[Feature 2]"
+    deadline: "[Deadline]"
+    assignee: "[Team Member]"
+    dependencies: ["[Dependency 1]"]
+    status: "planned"
+
+metrics:
+  test_coverage: [Number]
+  startup_time_ms: [Number]
+  frame_rate_fps: [Number]
+  crash_free_users_percent: [Number]
+  build_status: "[Status]"
+
+next_milestone:
+  target_date: "[Date]"
+  description: "[Milestone description]"
+  success_criteria:
+    - "[Criterion 1]"
+    - "[Criterion 2]"
+    - "[Criterion 3]"
+
+tech_stack_status:
+  mobile: "Flutter (Dart) - [Status]"
+  backend: "[Backend Stack] - [Status]"
+  api: "[API Stack] - [Status]"
+  local_storage: "[Storage Choice] - [Status]"
+  auth: "[Auth Stack] - [Status]"
+  ci_cd: "[CI/CD] - [Status]"
+  testing: "Unit/Widget/Integration - [Status]"
+  monitoring: "[Monitoring Stack] - [Status]"
