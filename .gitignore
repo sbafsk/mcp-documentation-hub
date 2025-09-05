@@ -112,3 +112,7 @@ temp/
 projects/
 # Personal Projects
 projects/
+
+# Allow tracking for Pomodoro Flutter project
+!projects/pomodoro-flutter/
+!projects/pomodoro-flutter/**
